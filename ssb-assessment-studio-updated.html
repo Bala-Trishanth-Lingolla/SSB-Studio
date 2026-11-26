@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101114">
+<title>SSB Assessment Studio</title>
+<style>
+:root{--bg:#0d0f12;--panel:#15181d;--panel2:#1c2027;--line:#2b3039;--text:#f4f5f7;--muted:#9ba3af;--red:#ef4444;--red2:#b91c1c;--gold:#e8b85d;--green:#42c58a;--blue:#72a7ff;--radius:18px;--shadow:0 18px 60px #0007}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#4a171b55,transparent 38%),var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}a{color:inherit}.hidden{display:none!important}.app{max-width:1180px;margin:auto;padding:24px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:34px}.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.08em}.brand-mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#f05b5b,#991b1b);display:grid;place-items:center;box-shadow:0 8px 24px #b91c1c55;font-weight:900}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.2em;font-weight:650}.top-actions{display:flex;gap:10px;align-items:center}.pill{border:1px solid var(--line);border-radius:999px;padding:7px 12px;color:var(--muted);font-size:12px}.view{animation:fade .25s ease}@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}.hero{padding:36px 0 28px;max-width:780px}.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:800}.hero h1{font-size:clamp(36px,6vw,66px);line-height:1.02;letter-spacing:-.055em;margin:12px 0}.hero p{color:var(--muted);font-size:17px;max-width:650px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{background:linear-gradient(145deg,#191d23,#13161b);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}.span-7{grid-column:span 7}.span-5{grid-column:span 5}.span-12{grid-column:span 12}.card h2,.card h3{margin:0 0 8px;letter-spacing:-.025em}.muted{color:var(--muted)}.small{font-size:12px}.field{display:grid;gap:7px;margin:15px 0}.field label{font-size:13px;font-weight:700;color:#d9dde4}.field input,.field textarea,.field select{width:100%;border:1px solid #343a45;background:#0e1116;color:var(--text);border-radius:11px;padding:13px 14px;outline:none}.field input:focus,.field textarea:focus,.field select:focus{border-color:#d34a4a;box-shadow:0 0 0 3px #ef444422}.field textarea{min-height:115px;resize:vertical}.btn{border:0;border-radius:11px;padding:12px 17px;font-weight:800;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:8px}.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}.btn-primary{background:linear-gradient(135deg,#ef5350,#b91c1c);color:white;box-shadow:0 8px 24px #b91c1c33}.btn-secondary{background:#252a33;border:1px solid #39414d;color:#f2f4f7}.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}.stat{background:#101318;border:1px solid var(--line);border-radius:13px;padding:14px}.stat strong{display:block;font-size:22px}.stat span{color:var(--muted);font-size:11px}.dropzone{border:1px dashed #555e6b;background:#101318;border-radius:15px;padding:24px;text-align:center}.dropzone input{max-width:100%;margin-top:12px}.notice{border:1px solid #69552e;background:#3c2d142e;color:#e8d4a9;border-radius:12px;padding:12px 14px;font-size:12px}.notice.error{border-color:#753333;background:#4a171733;color:#ffc2c2}.notice.success{border-color:#236447;background:#123c2b44;color:#b7f1d3}.divider{height:1px;background:var(--line);margin:18px 0}.preview-list{display:grid;gap:8px;max-height:270px;overflow:auto}.preview-item{display:flex;align-items:center;gap:12px;padding:10px;background:#101318;border:1px solid var(--line);border-radius:11px}.preview-thumb{width:54px;height:42px;border-radius:7px;object-fit:cover;background:#252a33}.preview-item .meta{min-width:0}.preview-item strong{display:block;font-size:13px}.preview-item span{font-size:11px;color:var(--muted)}.candidate-shell{max-width:760px;margin:5vh auto}.candidate-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.step-label{font-size:11px;letter-spacing:.16em;color:var(--gold);font-weight:800;text-transform:uppercase}.candidate-card{padding:clamp(22px,5vw,42px)}.candidate-card h1{font-size:clamp(30px,5vw,48px);letter-spacing:-.045em;line-height:1.05;margin:10px 0}.assessment-meta{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}.assessment-meta span{border:1px solid var(--line);background:#11151a;border-radius:999px;padding:7px 11px;font-size:12px;color:#c3c9d2}.timer{font-variant-numeric:tabular-nums;font-size:clamp(42px,9vw,76px);font-weight:900;letter-spacing:-.055em;line-height:1}.timer-label{font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);font-weight:800}.timer-wrap{text-align:center;padding:20px 0}.progress-track{height:6px;background:#2b3039;border-radius:20px;overflow:hidden}.progress-fill{height:100%;background:linear-gradient(90deg,#f06a5e,#e8b85d);width:0;transition:width .2s}.question-media{width:100%;max-height:440px;object-fit:contain;background:#08090b;border-radius:14px;border:1px solid var(--line);display:block}.prompt-box{padding:28px 20px;text-align:center;background:#101318;border:1px solid var(--line);border-radius:14px;font-size:clamp(24px,4vw,38px);font-weight:800;line-height:1.2}.response-box{min-height:230px;font-size:16px;line-height:1.65}.phase-badge{display:inline-flex;border-radius:999px;padding:6px 11px;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;background:#493716;color:#f5d18a}.phase-badge.writing{background:#123b2c;color:#9be5bd}.candidate-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px}.completion{text-align:center;padding:30px 0}.completion-icon{width:70px;height:70px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:#123b2c;color:#8ce0b2;font-size:32px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:20;background:#252a33;border:1px solid #49515e;border-radius:12px;padding:12px 16px;box-shadow:var(--shadow);max-width:min(90vw,560px);font-size:13px}.footer{padding:28px 0;color:#6f7783;font-size:11px;text-align:center}.kpi{display:flex;align-items:center;justify-content:space-between;gap:10px}.kpi strong{font-size:24px}.checkline{display:flex;gap:9px;align-items:flex-start;color:var(--muted);font-size:12px}.checkline input{margin-top:3px}code{background:#252a33;padding:2px 5px;border-radius:5px}
+
+/* Compact mobile assessment HUD: appears only after the original prompt/timer scroll out of view. */
+.compact-assessment-bar{display:none;position:fixed;top:calc(env(safe-area-inset-top, 0px) + 8px);left:12px;right:12px;z-index:50;max-width:720px;margin:0 auto;padding:9px 12px;border:1px solid #55505a;border-radius:14px;background:rgba(17,20,25,.94);backdrop-filter:blur(16px);box-shadow:0 12px 36px #0009;align-items:center;gap:12px;transform:translateY(-12px);opacity:0;transition:opacity .18s ease,transform .18s ease;pointer-events:none}
+.compact-assessment-bar.visible{display:flex;opacity:1;transform:translateY(0)}
+.compact-prompt{min-width:0;flex:1;font-size:12px;line-height:1.25;font-weight:750;color:#f4f5f7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.compact-timer-wrap{text-align:right;flex:0 0 auto}.compact-timer-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.compact-timer{font-size:19px;line-height:1.1;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.04em;color:#fff}
+@media(min-width:761px){.compact-assessment-bar{display:none!important}}
+@media(max-width:760px){.app{padding:16px}.span-7,.span-5{grid-column:span 12}.topbar{margin-bottom:20px}.hero{padding:18px 0}.card{padding:18px}.candidate-shell{margin:2vh auto}.statrow{grid-template-columns:repeat(3,1fr)}.stat{padding:10px}.stat strong{font-size:18px}.candidate-footer{align-items:stretch;flex-direction:column-reverse}.candidate-footer .btn{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">S</div><div>SSB STUDIO<small>ASSESSMENT ENGINE</small></div></div>
+    <div class="top-actions"><span class="pill" id="headerMode">ADMIN WORKSPACE</span><button class="btn btn-ghost" id="homeBtn" type="button">Home</button></div>
+  </header>
+  <main id="adminView" class="view">
+    <section class="hero">
+      <div class="eyebrow">Practice with purpose</div>
+      <h1>Build. Share.<br><span style="color:var(--gold)">Assess.</span></h1>
+      <p>Create timed SSB-style practice assessments from a JSON file. Share a link with candidates and collect their responses in your Google Sheet.</p>
+    </section>
+    <div class="grid">
+      <section class="card span-7">
+        <h2>Create an assessment</h2>
+        <p class="muted small">Upload a JSON configuration. The browser reads it locally; the file is not uploaded to a server.</p>
+        <div class="dropzone" id="dropzone">
+          <strong>Choose your assessment JSON</strong><br><span class="muted small">.json file · or use the sample configuration</span><br>
+          <input type="file" id="jsonFile" accept=".json,application/json">
+        </div>
+        <div class="btn-row"><button class="btn btn-secondary" id="sampleBtn">Load sample assessment</button><button class="btn btn-ghost" id="clearBtn">Clear</button></div>
+        <div id="uploadStatus" class="small muted" style="margin-top:12px">No assessment loaded.</div>
+        <div class="divider"></div>
+        <div id="assessmentPreview" class="hidden">
+          <div class="kpi"><div><div class="eyebrow">Loaded assessment</div><h2 id="pTitle">—</h2></div><span class="pill" id="pType">—</span></div>
+          <div class="statrow">
+            <div class="stat"><strong id="pCount">0</strong><span>Questions</span></div>
+            <div class="stat"><strong id="pObserve">—</strong><span>Observation</span></div>
+            <div class="stat"><strong id="pPerform">—</strong><span>Response</span></div>
+          </div>
+          <div class="divider"></div>
+          <div class="preview-list" id="previewList"></div>
+        </div>
+      </section>
+      <section class="card span-5">
+        <h2>Publishing settings</h2>
+        <p class="muted small">Paste the deployed Google Apps Script web-app URL. It will be included in the generated share link.</p>
+        <div class="field"><label for="scriptUrl">Google Apps Script endpoint URL</label><input id="scriptUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec"></div>
+        <div class="notice">Keep the spreadsheet private. The Apps Script endpoint should be deployed to execute as you, with access set to anyone. Do not put spreadsheet IDs, passwords or API secrets in this HTML.</div>
+        <div class="field"><label for="assessmentNote">Candidate instruction note (optional)</label><textarea id="assessmentNote" placeholder="e.g. Sit in a quiet place and complete the assessment independently."></textarea></div>
+        <div class="checkline"><input id="allowPdf" type="checkbox" checked><label for="allowPdf">Allow candidates to download a printable PDF response sheet</label></div>
+        <div class="btn-row"><button class="btn btn-primary" id="generateBtn" disabled>Generate share link ↗</button></div>
+        <div id="shareResult" class="hidden" style="margin-top:18px">
+          <div class="field"><label for="shareUrl">Shareable assessment URL</label><input id="shareUrl" readonly></div>
+          <div class="btn-row"><button class="btn btn-secondary" id="copyLinkBtn">Copy link</button><button class="btn btn-ghost" id="openLinkBtn">Open candidate view</button></div>
+        </div>
+      </section>
+      <section class="card span-12">
+        <h3>JSON format guide</h3>
+        <p class="muted small">Use an array in <code>data</code>. TAT uses <code>image</code>; WAT uses <code>word</code>; SRT uses <code>situation</code>; SDT can use <code>prompt</code>. A shared assessment link carries its configuration in the URL, so keep image assets hosted at public HTTPS URLs and keep the JSON reasonably small.</p>
+        <div class="btn-row"><button class="btn btn-ghost" id="downloadSampleBtn">Download sample JSON</button></div>
+      </section>
+    </div>
+    <footer class="footer">SSB Assessment Studio · Browser-based assessment builder</footer>
+  </main>
+
+  <main id="candidateView" class="view hidden">
+    <div class="candidate-shell">
+      <div class="candidate-head"><div class="step-label" id="candidateStep">CANDIDATE REGISTRATION</div><span class="pill" id="candidateType">SSB PRACTICE</span></div>
+      <section class="card candidate-card" id="registrationPanel">
+        <div class="eyebrow">Candidate details</div><h1>Before we begin.</h1>
+        <p class="muted">You can practise without sharing personal details. If you want your assessment reviewed and your practice response uploaded to the administrator's Google Sheet, provide both details below and give consent.</p>
+        <div class="field"><label for="candidateEmail">Email address <span class="muted">(optional)</span></label><input id="candidateEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
+        <div class="field"><label for="candidateInstagram">Instagram handle <span class="muted">(optional)</span></label><input id="candidateInstagram" type="text" autocomplete="username" placeholder="@yourusername" maxlength="30"></div>
+        <div id="registrationError" class="notice error hidden"></div>
+        <div class="assessment-meta" id="candidateMeta"></div>
+        <div class="checkline"><input type="checkbox" id="consent"><label for="consent">I agree to share my contact details and assessment responses with the administrator for review. This is required only if I provide my details.</label></div>
+        <div class="btn-row"><button class="btn btn-primary" id="continueRegistration">Continue to instructions →</button></div>
+      </section>
+      <section class="card candidate-card hidden" id="instructionsPanel">
+        <div class="eyebrow">Read carefully</div><h1 id="instructionTitle">Assessment instructions</h1>
+        <p class="muted" id="instructionText"></p>
+        <div class="assessment-meta" id="instructionMeta"></div>
+        <div class="notice">The timer starts when you press Begin assessment. Keep this tab open and avoid refreshing. Your answers are saved in this browser during the assessment.</div>
+        <div class="btn-row"><button class="btn btn-secondary" id="backRegistration">Back</button><button class="btn btn-primary" id="beginAssessment">Begin assessment →</button></div>
+      </section>
+      <section class="card candidate-card hidden" id="assessmentPanel">
+        <div class="kpi"><div><div class="step-label" id="questionCounter">QUESTION 1 / 1</div><h2 id="assessmentTitle">Assessment</h2></div><span class="pill" id="phasePill">OBSERVATION</span></div>
+        <div class="progress-track" style="margin:18px 0 8px"><div class="progress-fill" id="overallProgress"></div></div>
+        <div class="kpi small muted"><span id="progressText">0% completed</span><span id="autosaveStatus">Saved locally</span></div>
+        <div class="timer-wrap"><div class="timer-label" id="timerLabel">Observation time remaining</div><div class="timer" id="timerDisplay">00:30</div><span class="phase-badge" id="phaseBadge">OBSERVE</span></div>
+        <div id="questionVisual" style="margin:12px 0 18px"></div>
+        <div id="responseArea" class="hidden">
+          <div class="field"><label for="candidateResponse">Your response</label><textarea id="candidateResponse" class="response-box" placeholder="Write your response here..." spellcheck="true"></textarea></div>
+          <div class="small muted" id="responseHint">Your response is saved automatically in this browser.</div>
+        </div>
+        <div class="candidate-footer"><span class="small muted" id="phaseHint">Observe the material carefully.</span><button class="btn btn-primary" id="manualNext" disabled>Next question →</button></div>
+      </section>
+      <section class="card candidate-card hidden" id="completePanel">
+        <div class="completion"><div class="completion-icon">✓</div><div class="eyebrow">Assessment completed</div><h1>Well done.</h1><p class="muted" id="completionSummary">Your responses have been recorded in this browser.</p></div>
+        <div class="assessment-meta" id="completionMeta"></div>
+        <div class="btn-row" style="justify-content:center"><button class="btn btn-secondary" id="downloadPdf">Download response sheet (PDF)</button><button class="btn btn-primary" id="submitResponses">Send to admin for review →</button></div>
+        <p class="muted small" style="text-align:center;margin-top:14px" id="submissionStatus">Your responses are not sent to the administrator until you choose the submission option.</p>
+      </section>
+    </div>
+    <div class="compact-assessment-bar" id="compactAssessmentBar" aria-live="polite">
+      <div class="compact-prompt" id="compactPrompt">Assessment prompt</div>
+      <div class="compact-timer-wrap"><div class="compact-timer-label" id="compactTimerLabel">Time left</div><div class="compact-timer" id="compactTimer">00:00</div></div>
+    </div>
+    <footer class="footer">SSB Assessment Studio · Complete independently and honestly</footer>
+  </main>
+</div>
+<div id="toast" class="toast hidden" role="status"></div>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const SAMPLE = {
+  title:"SSB TAT Practice Set 01", type:"TAT",
+  instructions:"You will be shown each picture for the observation period. When it disappears, write a meaningful story within the response time. Work independently and keep an eye on the timer.",
+  timings:{observationTime:30,performanceTime:240},
+  submission:{enabled:true},
+  data:[
+    {id:1,image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200",caption:"Picture 1"},
+    {id:2,image:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200",caption:"Picture 2"},
+    {id:3,image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?w=1200",caption:"Picture 3"}
+  ]
+};
+let assessment=null, currentIndex=0, phase="idle", phaseDeadline=0, tickHandle=null, candidate=null, responses=[], sessionId="", allowPdf=true, generatedUrl="";
+const STORAGE_PREFIX="ssb-studio-session:";
+function toast(msg){const el=$("toast");el.textContent=msg;el.classList.remove("hidden");clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.add("hidden"),3500)}
+function safeText(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function fmt(sec){sec=Math.max(0,Math.ceil(sec));return String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0")}
+function normalizeAssessment(raw){
+ if(!raw||typeof raw!=="object")throw Error("The JSON root must be an object.");
+ const type=String(raw.type||"").toUpperCase();
+ if(!["WAT","TAT","SRT","SDT"].includes(type))throw Error("type must be WAT, TAT, SRT or SDT.");
+ const timings=raw.timings||raw;
+ const obs=Number(timings.observationTime??raw.observationTime??0);
+ const unlimited=type==="SDT"||timings.unlimited===true||raw.unlimited===true;
+ const perfRaw=timings.performanceTime??raw.performanceTime??240;
+ const perf=unlimited?null:Number(perfRaw);
+ if(!Number.isFinite(obs)||obs<0||(!unlimited&&(!Number.isFinite(perf)||perf<=0)))throw Error("Observation time must be 0 or more seconds and performance time must be greater than 0. SDT is untimed.");
+ let data=raw.data;
+ if(!Array.isArray(data)&&data&&typeof data==="object")data=Object.keys(data).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})).map((k,i)=>({id:i+1,image:data[k],word:data[k],prompt:data[k]}));
+ if(!Array.isArray(data)||!data.length)throw Error("data must contain at least one question.");
+ data=data.map((item,i)=>{
+   if(typeof item==="string")item={id:i+1,[type==="WAT"?"word":type==="SRT"?"situation":"prompt"]:item};
+   if(!item||typeof item!=="object")throw Error("Each data item must be an object or string.");
+   const value=item.image||item.word||item.situation||item.prompt||item.text||"";
+   if(!value)throw Error("Question "+(i+1)+" has no image, word, situation or prompt.");
+   if(type==="TAT" && item.image && !/^https?:\/\//i.test(item.image))throw Error("TAT image URLs must use HTTP or HTTPS.");
+   return {...item,id:item.id??i+1};
+ });
+ return {title:String(raw.title||"Untitled SSB Assessment"),type,instructions:String(raw.instructions||"Read each question carefully and respond within the given time."),timings:{observationTime:obs,performanceTime:perf,unlimited},submission:{enabled:raw.submission?.enabled!==false},data};
+}
+function questionValue(q){return q.image||q.word||q.situation||q.prompt||q.text||""}
+function loadAssessment(raw){
+ assessment=normalizeAssessment(raw);
+ $("uploadStatus").textContent="Assessment loaded and validated successfully.";
+ $("uploadStatus").className="small";
+ $("assessmentPreview").classList.remove("hidden");$("pTitle").textContent=assessment.title;$("pType").textContent=assessment.type;$("pCount").textContent=assessment.data.length;$("pObserve").textContent=assessment.timings.observationTime+"s";$("pPerform").textContent=assessment.timings.unlimited?"No limit":fmt(assessment.timings.performanceTime);
+ $("previewList").innerHTML=assessment.data.slice(0,30).map((q,i)=>`<div class="preview-item">${q.image?`<img class="preview-thumb" src="${safeText(q.image)}" alt="" onerror="this.style.visibility='hidden'">`:`<div class="preview-thumb" style="display:grid;place-items:center;color:var(--gold);font-weight:900">${i+1}</div>`}<div class="meta"><strong>${i+1}. ${safeText(q.caption||questionValue(q).slice(0,90))}</strong><span>${q.image?"Image prompt":assessment.type+" prompt"}</span></div></div>`).join("")+(assessment.data.length>30?`<div class="muted small">And ${assessment.data.length-30} more questions…</div>`:"");
+ $("generateBtn").disabled=false;$("shareResult").classList.add("hidden");
+}
+function clearAssessment(){assessment=null;$("assessmentPreview").classList.add("hidden");$("generateBtn").disabled=true;$("shareResult").classList.add("hidden");$("uploadStatus").textContent="No assessment loaded.";$("jsonFile").value=""}
+$("jsonFile").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{loadAssessment(JSON.parse(await f.text()))}catch(err){$("uploadStatus").textContent=err.message;$("uploadStatus").className="small";toast("Could not load JSON: "+err.message)}});
+$("sampleBtn").onclick=()=>loadAssessment(SAMPLE);
+$("clearBtn").onclick=clearAssessment;
+$("dropzone").addEventListener("dragover",e=>{e.preventDefault();$("dropzone").style.borderColor="var(--gold)"});
+$("dropzone").addEventListener("dragleave",()=>$("dropzone").style.borderColor="");
+$("dropzone").addEventListener("drop",async e=>{e.preventDefault();$("dropzone").style.borderColor="";const f=e.dataTransfer.files[0];if(!f)return;try{loadAssessment(JSON.parse(await f.text()))}catch(err){toast(err.message)}});
+function base64urlEncode(str){const bytes=new TextEncoder().encode(str);let bin="";bytes.forEach(b=>bin+=String.fromCharCode(b));return btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
+function base64urlDecode(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";const bin=atob(s);const bytes=Uint8Array.from(bin,c=>c.charCodeAt(0));return new TextDecoder().decode(bytes)}
+function bytesToB64Url(bytes){let bin="";for(let i=0;i<bytes.length;i+=0x8000)bin+=String.fromCharCode(...bytes.subarray(i,i+0x8000));return btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
+async function encodeConfig(obj){
+ const raw=new TextEncoder().encode(JSON.stringify(obj));
+ if("CompressionStream" in window){try{const cs=new CompressionStream("deflate-raw");const writer=cs.writable.getWriter();writer.write(raw);writer.close();const buf=new Uint8Array(await new Response(cs.readable).arrayBuffer());return "z"+bytesToB64Url(buf)}catch(e){}}
+ return "j"+bytesToB64Url(raw);
+}
+async function decodeConfig(token){
+ const mode=token[0],payload=token.slice(1);
+ if(mode==="j")return JSON.parse(base64urlDecode(payload));
+ if(mode==="z"&&"DecompressionStream" in window){const bytes=Uint8Array.from(atob(payload.replace(/-/g,"+").replace(/_/g,"/")+"=".repeat((4-payload.length%4)%4)),c=>c.charCodeAt(0));const ds=new DecompressionStream("deflate-raw");const w=ds.writable.getWriter();w.write(bytes);w.close();return JSON.parse(new TextDecoder().decode(await new Response(ds.readable).arrayBuffer()))}
+ throw Error("This browser cannot decode the assessment link. Open it in a recent version of Chrome, Edge, Firefox or Safari.");
+}
+$("generateBtn").onclick=async()=>{
+ try{
+  const endpoint=$("scriptUrl").value.trim();
+  if(endpoint&&!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec(?:\?.*)?$/i.test(endpoint))throw Error("Enter the deployed Google Apps Script web-app URL ending in /exec.");
+  allowPdf=$("allowPdf").checked;
+  const config={v:1,assessment,endpoint,adminNote:$("assessmentNote").value.trim(),allowPdf};
+  const token=await encodeConfig(config);
+  const url=new URL(location.href);url.hash="assessment="+token;
+  if(url.href.length>12000)throw Error("This assessment creates a very long share link. Reduce image/question data or use shorter image URLs.");
+  generatedUrl=url.href;$("shareUrl").value=generatedUrl;$("shareResult").classList.remove("hidden");toast("Share link generated.");
+ }catch(e){toast(e.message)}
+};
+$("copyLinkBtn").onclick=async()=>{try{await navigator.clipboard.writeText(generatedUrl);toast("Link copied.")}catch(e){$("shareUrl").select();document.execCommand("copy");toast("Link copied.")}};
+$("openLinkBtn").onclick=()=>window.open(generatedUrl,"_blank","noopener");
+$("downloadSampleBtn").onclick=()=>downloadBlob(JSON.stringify(SAMPLE,null,2),"sample-assessment.json","application/json");
+function downloadBlob(content,name,type){const blob=new Blob([content],{type});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function showCandidate(){ $("adminView").classList.add("hidden");$("candidateView").classList.remove("hidden");$("headerMode").textContent="CANDIDATE PORTAL";$("homeBtn").classList.add("hidden")}
+function showAdmin(){ $("candidateView").classList.add("hidden");$("adminView").classList.remove("hidden");$("headerMode").textContent="ADMIN WORKSPACE";$("homeBtn").classList.remove("hidden")}
+$("homeBtn").onclick=()=>{if(phase==="observe"||phase==="write"){if(!confirm("Leave this assessment? Your latest response is saved locally, but the timer will stop."))return;clearInterval(tickHandle)}showAdmin()};
+function setPanel(id){["registrationPanel","instructionsPanel","assessmentPanel","completePanel"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+function getSessionKey(){return STORAGE_PREFIX+sessionId}
+function persist(){if(!assessment||!sessionId)return;try{localStorage.setItem(getSessionKey(),JSON.stringify({candidate,responses,currentIndex,phase,updatedAt:Date.now()}));$("autosaveStatus").textContent="Saved locally"}catch(e){$("autosaveStatus").textContent="Local storage unavailable"}}
+function validInstagram(s){return /^@?[A-Za-z0-9._]{1,30}$/.test(s)}
+function initCandidate(config){
+ try{assessment=normalizeAssessment(config.assessment);allowPdf=config.allowPdf!==false;window.sharedConfig=config;showCandidate();$("candidateType").textContent=assessment.type+" ASSESSMENT";$("candidateMeta").innerHTML=`<span>${safeText(assessment.title)}</span><span>${assessment.data.length} questions</span><span>${assessment.timings.unlimited?"No time limit":fmt(assessment.timings.performanceTime)+" per response"}</span>`;$("instructionTitle").textContent=assessment.title;$("instructionText").textContent=config.adminNote||assessment.instructions;$("instructionMeta").innerHTML=`<span>${assessment.type}</span><span>${assessment.data.length} questions</span><span>${assessment.timings.observationTime}s observation</span><span>${assessment.timings.unlimited?"No time limit":fmt(assessment.timings.performanceTime)+" response time"}</span>`;$("downloadPdf").classList.toggle("hidden",!allowPdf);
+ }catch(e){showCandidate();setPanel("registrationPanel");$("registrationError").textContent="Invalid assessment link: "+e.message;$("registrationError").classList.remove("hidden")}
+}
+$("continueRegistration").onclick=()=>{
+ const email=$("candidateEmail").value.trim(),insta=$("candidateInstagram").value.trim().replace(/^@/,"");
+ const err=$("registrationError");err.classList.add("hidden");
+ const hasEmail=!!email,hasInstagram=!!insta,hasDetails=hasEmail&&hasInstagram;
+ if(hasEmail!==hasInstagram){err.textContent="To request an administrator review, provide both your email address and Instagram handle. Or leave both blank to practise privately.";err.classList.remove("hidden");return}
+ if(hasDetails&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent="Please enter a valid email address.";err.classList.remove("hidden");return}
+ if(hasDetails&&!validInstagram(insta)){err.textContent="Enter a valid Instagram username (letters, numbers, dots and underscores).";err.classList.remove("hidden");return}
+ if(hasDetails&&!$("consent").checked){err.textContent="Please give consent to share your contact details and responses for administrator review, or clear both fields to practise privately.";err.classList.remove("hidden");return}
+ candidate=hasDetails?{email,instagram:"@"+insta}:null;
+ sessionId=(crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2));responses=assessment.data.map(()=>({answer:"",startedAt:null,completedAt:null}));persist();setPanel("instructionsPanel");$("candidateStep").textContent="ASSESSMENT INSTRUCTIONS";
+};
+$("backRegistration").onclick=()=>setPanel("registrationPanel");
+$("beginAssessment").onclick=()=>{currentIndex=0;startQuestion()};
+function startQuestion(){
+ if(currentIndex>=assessment.data.length){finishAssessment();return}
+ const q=assessment.data[currentIndex];responses[currentIndex]=responses[currentIndex]||{answer:"",startedAt:null,completedAt:null};
+ responses[currentIndex].startedAt=responses[currentIndex].startedAt||new Date().toISOString();
+ $("assessmentTitle").textContent=assessment.title;$("questionCounter").textContent=`QUESTION ${currentIndex+1} / ${assessment.data.length}`;
+ $("overallProgress").style.width=(currentIndex/assessment.data.length*100)+"%";$("progressText").textContent=Math.round(currentIndex/assessment.data.length*100)+"% completed";
+ $("candidateResponse").value=responses[currentIndex].answer||"";$("responseArea").classList.add("hidden");$("manualNext").disabled=true;$("manualNext").textContent="Next question →";
+ if(assessment.type==="WAT"){beginWat()}
+ else if(assessment.timings.unlimited){beginUntimed()}
+ else {
+  const obs=assessment.timings.observationTime;
+  if(obs>0){phase="observe";$("phasePill").textContent="OBSERVATION";$("phaseBadge").textContent="OBSERVE";$("phaseBadge").className="phase-badge";$("timerLabel").textContent="Observation time remaining";$("phaseHint").textContent="Observe the material carefully. The response box will appear when time ends.";renderQuestion(q,true);phaseDeadline=Date.now()+obs*1000;runTimer()}
+  else beginWriting();
+ }
+ persist();setPanel("assessmentPanel");$("candidateStep").textContent="ASSESSMENT IN PROGRESS";updateCompactAssessmentBar();
+}
+function renderQuestion(q,visible){
+ const val=questionValue(q);const box=$("questionVisual");
+ if(!visible){box.innerHTML='<div class="prompt-box">Observation period completed</div>';return}
+ if(q.image){box.innerHTML=`<img class="question-media" src="${safeText(q.image)}" alt="Assessment picture" referrerpolicy="no-referrer">`}
+ else{box.innerHTML=`<div class="prompt-box">${safeText(val)}</div>`}
+}
+function updateCompactAssessmentBar(){
+ const bar=$("compactAssessmentBar");if(!bar||!assessment||!$("assessmentPanel")||$("assessmentPanel").classList.contains("hidden")||!["observe","write","wat","unlimited"].includes(phase)){bar?.classList.remove("visible");return}
+ const q=assessment.data[currentIndex]||{};
+ const prompt=q.image?"Picture prompt":questionValue(q);
+ $("compactPrompt").textContent=prompt||assessment.title;
+ $("compactTimerLabel").textContent=phase==="unlimited"?"Time limit":"Time remaining";
+ $("compactTimer").textContent=phase==="unlimited"?"∞":($("timerDisplay").textContent||"00:00");
+ checkCompactAssessmentBar();
+}
+function checkCompactAssessmentBar(){
+ const bar=$("compactAssessmentBar");if(!bar)return;
+ if(window.innerWidth>760||!assessment||$("assessmentPanel").classList.contains("hidden")||!["observe","write","wat","unlimited"].includes(phase)){bar.classList.remove("visible");return}
+ const timer=$("assessmentPanel .timer-wrap"),visual=$("questionVisual");
+ if(!timer||!visual)return;
+ const timerRect=timer.getBoundingClientRect(),visualRect=visual.getBoundingClientRect(),vh=window.innerHeight;
+ const timerVisible=timerRect.bottom>0&&timerRect.top<vh;
+ const visualVisible=visualRect.bottom>0&&visualRect.top<vh;
+ bar.classList.toggle("visible",!timerVisible&&!visualVisible);
+}
+window.addEventListener("scroll",checkCompactAssessmentBar,{passive:true});window.addEventListener("resize",checkCompactAssessmentBar);
+function beginWat(){
+ phase="wat";const q=assessment.data[currentIndex];
+ renderQuestion(q,true); // Keep the WAT word visible throughout the response period.
+ $("phasePill").textContent="WORD ASSOCIATION";$("phaseBadge").textContent="WORD + RESPONSE";$("phaseBadge").className="phase-badge writing";
+ $("timerLabel").textContent="Time remaining for this word";$("phaseHint").textContent="Write your immediate association while the word remains visible.";
+ $("responseArea").classList.remove("hidden");$("manualNext").disabled=false;$("manualNext").textContent="Next word →";
+ phaseDeadline=Date.now()+assessment.timings.performanceTime*1000;runTimer();persist();updateCompactAssessmentBar();
+}
+function beginUntimed(){
+ phase="unlimited";const q=assessment.data[currentIndex];
+ renderQuestion(q,true);
+ $("phasePill").textContent="SELF DESCRIPTION";$("phaseBadge").textContent="NO TIME LIMIT";$("phaseBadge").className="phase-badge writing";
+ $("timerLabel").textContent="Time limit";$("timerDisplay").textContent="∞";
+ $("phaseHint").textContent="Take your time. Your response is saved automatically; continue when ready.";
+ $("responseArea").classList.remove("hidden");$("manualNext").disabled=false;
+ $("manualNext").textContent=currentIndex===assessment.data.length-1?"Finish assessment ✓":"Save & continue →";
+ persist();updateCompactAssessmentBar();
+}
+function beginWriting(){
+ phase="write";const q=assessment.data[currentIndex];renderQuestion(q,false);
+ $("phasePill").textContent="RESPONSE";$("phaseBadge").textContent="WRITE";$("phaseBadge").className="phase-badge writing";$("timerLabel").textContent="Response time remaining";$("phaseHint").textContent="Write your response. It will be recorded automatically when time ends.";
+ $("responseArea").classList.remove("hidden");$("candidateResponse").focus();$("manualNext").disabled=false;
+ phaseDeadline=Date.now()+assessment.timings.performanceTime*1000;runTimer();persist();updateCompactAssessmentBar();
+}
+function runTimer(){clearInterval(tickHandle);function tick(){const remaining=Math.max(0,(phaseDeadline-Date.now())/1000);$("timerDisplay").textContent=fmt(remaining);if($("compactTimer"))$("compactTimer").textContent=fmt(remaining);if(remaining<=0){clearInterval(tickHandle);if(phase==="observe")beginWriting();else if(phase==="write"||phase==="wat")completeQuestion(true)}}tick();tickHandle=setInterval(tick,200)}
+$("candidateResponse").addEventListener("input",()=>{if(phase==="write"||phase==="wat"||phase==="unlimited"){responses[currentIndex].answer=$("candidateResponse").value;persist()}});
+$("manualNext").onclick=()=>{if(!["write","wat","unlimited"].includes(phase))return;completeQuestion(false)};
+function completeQuestion(auto){
+ clearInterval(tickHandle);if(!["write","wat","unlimited"].includes(phase))return;
+ responses[currentIndex].answer=$("candidateResponse").value;responses[currentIndex].completedAt=new Date().toISOString();responses[currentIndex].autoSubmitted=!!auto;persist();
+ currentIndex++;if(currentIndex>=assessment.data.length)finishAssessment();else startQuestion();
+}
+function finishAssessment(){clearInterval(tickHandle);phase="complete";$("compactAssessmentBar")?.classList.remove("visible");persist();setPanel("completePanel");$("candidateStep").textContent="ASSESSMENT COMPLETED";$("completionSummary").textContent=`You completed ${assessment.data.length} questions in ${assessment.title}. Your responses are saved in this browser. They have not yet been sent to the administrator.`;$("completionMeta").innerHTML=`<span>${assessment.type}</span><span>${assessment.data.length} responses</span>`+(candidate?`<span>${safeText(candidate.email)}</span><span>${safeText(candidate.instagram)}</span>`:``);$("submitResponses").classList.toggle("hidden",!candidate);$("submitResponses").disabled=false;$("submissionStatus").textContent="Your responses are not sent to the administrator until you choose the submission option.";$("overallProgress").style.width="100%"}
+function printableHtml(){
+ const rows=assessment.data.map((q,i)=>`<section><h3>Question ${i+1}</h3>${q.image?`<img src="${safeText(q.image)}">`:`<p class="prompt">${safeText(questionValue(q))}</p>`}<p class="answer">${safeText(responses[i]?.answer||"No response provided.").replace(/\n/g,"<br>")}</p></section>`).join("");
+ return `<!doctype html><html><head><meta charset="utf-8"><title>SSB Response Sheet</title><style>body{font:14px Arial;color:#171717;margin:28px}h1{font-size:24px}h2{font-size:16px;color:#555}section{page-break-inside:avoid;border-top:1px solid #bbb;padding:16px 0}img{max-width:100%;max-height:260px;object-fit:contain}.prompt{font-size:20px;font-weight:bold}.answer{white-space:normal;line-height:1.6;border:1px solid #ddd;padding:12px;min-height:60px}.meta{color:#555;font-size:12px}@media print{button{display:none}}</style></head><body><h1>${safeText(assessment.title)}</h1><h2>Candidate response sheet</h2><p class="meta">${candidate?`Email: ${safeText(candidate.email)} · Instagram: ${safeText(candidate.instagram)} · `:`Private practice · `}Type: ${assessment.type} · Completed: ${new Date().toLocaleString()}</p>${rows}<script>window.onload=()=>setTimeout(()=>window.print(),500)<\/script></body></html>`;
+}
+$("downloadPdf").onclick=()=>{const w=window.open("","_blank");if(!w){toast("Allow pop-ups to create your printable response sheet.");return}w.document.open();w.document.write(printableHtml());w.document.close()};
+$("submitResponses").onclick=async()=>{
+ if(!candidate){toast("Private practice sessions cannot be submitted for review.");return}
+ const endpoint=window.sharedConfig?.endpoint;
+ if(!endpoint){$("submissionStatus").textContent="No Google Apps Script endpoint was configured for this assessment. Please contact the administrator.";return}
+ const btn=$("submitResponses");btn.disabled=true;btn.textContent="Sending…";
+ const payload={schemaVersion:1,submissionId:sessionId,submittedAt:new Date().toISOString(),candidate,assessment:{title:assessment.title,type:assessment.type,totalQuestions:assessment.data.length},responses:assessment.data.map((q,i)=>({questionId:q.id,question:questionValue(q),answer:responses[i]?.answer||"",startedAt:responses[i]?.startedAt||null,completedAt:responses[i]?.completedAt||null,autoSubmitted:!!responses[i]?.autoSubmitted})),completionStatus:"completed"};
+ try{
+  await fetch(endpoint,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload),redirect:"follow"});
+  $("submissionStatus").textContent="Submission request sent. Because the browser cannot read the response from the Google Apps Script endpoint, this page cannot independently verify that the row was written. Please contact the administrator if confirmation is needed.";
+  $("submissionStatus").className="notice";
+  btn.textContent="Submission sent";toast("Submission request sent.");
+ }catch(e){$("submissionStatus").textContent="Could not send the submission. Check your internet connection and try again. "+e.message;$("submissionStatus").className="notice error";btn.disabled=false;btn.textContent="Retry submission →"}
+};
+function boot(){
+ const hash=location.hash;
+ if(hash.startsWith("#assessment=")){const token=hash.slice("#assessment=".length);decodeConfig(token).then(initCandidate).catch(e=>{showCandidate();setPanel("registrationPanel");$("registrationError").textContent=e.message;$("registrationError").classList.remove("hidden")})}
+ else showAdmin();
+}
+boot();
+</script>
+</body>
+</html>
